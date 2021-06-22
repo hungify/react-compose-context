@@ -4,7 +4,7 @@ import CouterReducer from "../reducer/CouterReducer.js";
 
 const initialState = { count: 0 };
 
-export const GlobalContext = createContext(null);
+export const GlobalContext = createContext(initialState);
 
 function GlobalProvider(props) {
   const [state, dispatch] = useReducer(CouterReducer, initialState);
