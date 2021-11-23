@@ -1,16 +1,20 @@
 import "./App.css";
-import CounterC from "./components/Counter";
-import { useCount } from "./context/count";
+import App1 from "./pattern_1";
+import { CountProvider1 } from "./pattern_1/context/count";
+import App2 from "./pattern_2";
+import { CountProvider2 } from "./pattern_2/context/count";
 
 function App() {
-  const { state, dispatch } = useCount();
   return (
     <div className="App">
-      <h1>{state?.count}</h1>
-      <CounterC />
-      <button onClick={() => dispatch({ type: "decrement" })}>
-        Decrement count parent
-      </button>
+      <CountProvider1>
+        <App1 />
+      </CountProvider1>
+      <hr />
+      <br />
+      <CountProvider2>
+        <App2 />
+      </CountProvider2>
     </div>
   );
 }
