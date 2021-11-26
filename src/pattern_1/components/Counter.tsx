@@ -1,15 +1,18 @@
-import { useCallback } from "react";
-import { IncrementId } from "../actions/count";
 import { useCount } from "../context/count";
 
 function Counter1() {
-  const { state, dispatch } = useCount();
+  const {
+    state: { id },
+    increment,
+  } = useCount();
 
-  const handleIncrement = useCallback(() => dispatch(IncrementId()), [dispatch]);
+  const handleIncrement = () => {
+    increment();
+  };
 
   return (
     <div>
-      <h2>{state.id}</h2>
+      <h2>{id}</h2>
       <button onClick={handleIncrement}>Increment count child</button>
     </div>
   );

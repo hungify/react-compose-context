@@ -1,20 +1,20 @@
-import { useCallback } from "react";
-import { DecrementId, SetChangeValue } from "./actions/count";
 import Counter1 from "./components/Counter";
 import { useCount } from "./context/count";
 
 function App1() {
   const {
     state: { id, changeValue },
-    dispatch,
+    decrement,
+    setValueChange,
   } = useCount();
 
-  const handleDecrement = useCallback(() => dispatch(DecrementId()), [dispatch]);
-  const changeValueEvent = useCallback(
-    (event: React.ChangeEvent<HTMLSelectElement>) =>
-      dispatch(SetChangeValue(Number(event.currentTarget.value))),
-    [dispatch]
-  );
+  const handleDecrement = () => {
+    decrement();
+  };
+  const changeValueEvent = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setValueChange(Number(event.currentTarget.value));
+  };
+
   return (
     <div>
       <select id="change-select" value={changeValue} onChange={changeValueEvent}>
