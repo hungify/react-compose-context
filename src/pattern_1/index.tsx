@@ -16,7 +16,7 @@ function App1() {
   };
 
   return (
-    <div>
+    <div className="wrapper">
       <select id="change-select" value={changeValue} onChange={changeValueEvent}>
         {[1, 2, 3, 4, 5].map((val) => (
           <option key={val} value={val}>

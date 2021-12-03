@@ -8,7 +8,7 @@ function App2() {
   } = useCount();
 
   return (
-    <div>
+    <div className="wrapper">
       <select
         id="change-select"
         value={changeValue}

@@ -6,9 +6,7 @@ function Counter2() {
   return (
     <div>
       <h2>{state.count}</h2>
-      <button onClick={() => dispatch({ type: "counter/increment" })}>
-        Increment count child
-      </button>
+      <button onClick={() => dispatch({ type: "counter/increment" })}>Increment count child</button>
     </div>
   );
 }

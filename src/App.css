@@ -1,6 +1,22 @@
 .App {
+  /* margin: auto; */
+  display: flex;
+  font-size: x-small;
+  align-items: center;
+  height: 100vh;
+  justify-content: space-around;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+div {
   text-align: center;
-  margin: auto;
-  padding: 2rem;
-  font-size: x-large;
+}
+
+button {
+  display: block;
+  padding: 10px;
+  margin: 5px;
 }
