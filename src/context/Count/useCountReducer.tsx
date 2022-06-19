@@ -1,5 +1,5 @@
 import { useCallback, useReducer } from 'react';
-import { CountTypes } from '~constants/count';
+import { CountTypes } from '~constants';
 import { CountActionTypes } from '~context/Count/countActions';
 import { CountState } from '~context/Count/CountProvider';
 
@@ -23,7 +23,7 @@ export function useCountReducer(initialState: CountState) {
       case CountTypes.increaseAmount:
         return {
           ...state,
-          count: action.payload + count,
+          count: (action.payload ?? 0) + count,
         };
       default:
         throw new Error(`Unhandled action type: ${action.type}`);
