@@ -2,31 +2,31 @@ import { createContext } from 'react';
 import { useCountReducer } from '~context/Count/useCountReducer';
 
 export interface CountState {
-  num: number;
+  count: number;
 }
+
 type CountContext = ReturnType<typeof useCountReducer>;
 
 const initialValue: CountState = {
-  num: 0,
+  count: 0,
 };
 
 export const CountContext = createContext<CountContext>({
   state: initialValue,
   increase: () => undefined,
   decrease: () => undefined,
-  setCount: () => undefined,
+  increaseByAmount: () => undefined,
+  increaseAsync: () => () => undefined,
+  dispatch: () => undefined,
 });
-CountProvider.displayName = 'CountProvider';
+CountContext.displayName = 'CountProvider';
 
 interface CountProviderProps {
-  initialState?: CountState;
   children: React.ReactNode;
 }
-function CountProvider({ initialState, children }: CountProviderProps) {
+function CountProvider({ children }: CountProviderProps) {
   return (
-    <CountContext.Provider value={useCountReducer(initialState || initialValue)}>
-      {children}
-    </CountContext.Provider>
+    <CountContext.Provider value={useCountReducer(initialValue)}>{children}</CountContext.Provider>
   );
 }
 

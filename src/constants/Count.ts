@@ -1,5 +1,6 @@
 export enum CountTypes {
   increase = 'count/increase',
   decrease = 'count/decrease',
-  setCount = 'count/change/set',
+  increaseAmount = 'count/increase/amount',
+  decreaseAsync = 'count/decrease/amount',
 }

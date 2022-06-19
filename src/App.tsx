@@ -1,24 +1,24 @@
 import './App.css';
 
 import Counter from '~components/Counter';
-import useCount from '~context/Count';
-import ChildCountComponent from '~HOC/ChildCountComponent';
+import useTheme from '~context/Theme';
 import logo from './logo.svg';
+import Switch from '~components/Switch';
 
 function App() {
-  const { state, increase } = useCount();
-  const { num } = state;
+  const { state } = useTheme();
+  const { theme } = state;
 
   return (
-    <div className='App'>
+    <div className='App' data-theme={theme}>
       <header className='App-header'>
         <img src={logo} className='App-logo' alt='logo' />
-        <p>Hello Vite + React! </p>
-        <p>{num}</p>
-        <button onClick={() => increase()}>Increase</button>
+        <Counter />
+        <Switch />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
       </header>
-      <Counter />
-      <ChildCountComponent />
     </div>
   );
 }

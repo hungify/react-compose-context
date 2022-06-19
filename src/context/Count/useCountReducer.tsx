@@ -1,29 +1,32 @@
 import { useCallback, useReducer } from 'react';
-import { CountTypes } from '~constants/Count';
+import { CountTypes } from '~constants/count';
 import { CountActionTypes } from '~context/Count/countActions';
 import { CountState } from '~context/Count/CountProvider';
 
+export type Dispatch = (action: CountActionTypes) => void;
+
 export function useCountReducer(initialState: CountState) {
   const [state, dispatch] = useReducer((state: CountState, action: CountActionTypes) => {
-    const { num } = state;
+    const { count } = state;
+
     switch (action.type) {
       case CountTypes.decrease:
         return {
           ...state,
-          num: num - 1,
+          count: count - (action?.payload ?? 1),
         };
       case CountTypes.increase:
         return {
           ...state,
-          num: num + 1,
+          count: count + (action?.payload ?? 1),
         };
-      case CountTypes.setCount:
+      case CountTypes.increaseAmount:
         return {
           ...state,
-          num: action.payload,
+          count: action.payload + count,
         };
       default:
-        return state;
+        throw new Error(`Unhandled action type: ${action.type}`);
     }
   }, initialState);
 
@@ -39,17 +42,43 @@ export function useCountReducer(initialState: CountState) {
     });
   }, []);
 
-  const _handleSetCount = useCallback((value: number) => {
+  const _handleIncrementByAmount = useCallback((amount: number) => {
     dispatch({
-      type: CountTypes.setCount,
-      payload: value,
+      type: CountTypes.increaseAmount,
+      payload: amount,
     });
   }, []);
+
+  const _handleIncrementAsync = useCallback(
+    (amount: number) => (dispatch: Dispatch) => {
+      dispatch({
+        type: CountTypes.decrease,
+        payload: 10,
+      });
+      setTimeout(() => {
+        dispatch({ type: CountTypes.increaseAmount, payload: amount });
+      }, 2000);
+      dispatch({
+        type: CountTypes.increaseAmount,
+        payload: 5,
+      });
+    },
+    [],
+  );
+
+  type ActionThunk = (dispatch: Dispatch) => void;
+  const _thunkDispatch = useCallback(
+    (action: ActionThunk) => (typeof action === 'function' ? action(dispatch) : action),
+    [],
+  );
+
   return {
     state,
     increase: _handleIncrement,
     decrease: _handleDecrement,
-    setCount: _handleSetCount,
+    increaseByAmount: _handleIncrementByAmount,
+    increaseAsync: _handleIncrementAsync,
+    dispatch: _thunkDispatch,
   };
 }
 

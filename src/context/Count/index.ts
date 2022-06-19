@@ -1,6 +1,6 @@
 export { default as CountProvider } from './CountProvider';
 import { useContext } from 'react';
-import { CountContext } from '~context/Count/CountProvider';
+import { CountContext } from './CountProvider';
 
 function useCount() {
   const context = useContext(CountContext);
