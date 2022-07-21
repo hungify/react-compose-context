@@ -1,9 +1,13 @@
 import './App.css';
 
+import { Route, Routes } from 'react-router-dom';
 import Counter from '~components/Counter';
-import useTheme from '~context/Theme';
-import logo from './logo.svg';
 import Switch from '~components/Switch';
+import useTheme from '~context/Theme';
+import ListString from '~HOC/components/ListString';
+import logo from './logo.svg';
+import ListNumber from '~HOC/components/ListNumber';
+import Home from '~pages/Home';
 
 function App() {
   const { state } = useTheme();
@@ -11,14 +15,22 @@ function App() {
 
   return (
     <div className='App' data-theme={theme}>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <Counter />
-        <Switch />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
+      <img src={logo} className='App-logo' alt='logo' />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='counter' element={<Counter />} />
+        <Route path='switch' element={<Switch />} />
+        <Route path='list-string' element={<ListString data={['a', 'b']} />} />
+        <Route path='list-number' element={<ListNumber data={[1, 2]} />} />
+        <Route
+          path='*'
+          element={
+            <div>
+              <h1>404</h1>
+            </div>
+          }
+        />
+      </Routes>
     </div>
   );
 }
