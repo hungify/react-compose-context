@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import withRedirectIfBlank, { RedirectIfBlankProps } from './withRedirectIfBlank';
+import withRedirectIfBlank, { type RedirectIfBlankProps } from './withRedirectIfBlank';
 
 const ListString = ({ data }: RedirectIfBlankProps) => {
   const navigate = useNavigate();

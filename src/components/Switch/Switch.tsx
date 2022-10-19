@@ -1,13 +1,16 @@
 import React from 'react';
-import useTheme from '~context/Theme';
+import { useStore } from '~/app';
+import { Themes } from '~/constants';
 
 export default function Switch() {
-  const { setTheme, state } = useTheme();
-  const { theme } = state;
+  const [theme, setTheme] = useStore((store) => store.theme);
 
   const handleSwitch = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    setTheme(theme);
+    setTheme({
+      theme: theme === Themes.dark ? Themes.light : Themes.dark,
+    });
+    window.localStorage.setItem('theme', theme);
   };
 
   return (

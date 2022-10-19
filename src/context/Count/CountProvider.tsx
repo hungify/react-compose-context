@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { useCountReducer } from '~context/Count/useCountReducer';
+import { useCountReducer } from '~/context/Count/useCountReducer';
 
 export interface CountState {
   count: number;

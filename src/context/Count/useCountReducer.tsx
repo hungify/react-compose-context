@@ -1,7 +1,7 @@
 import { useCallback, useReducer } from 'react';
-import { CountTypes } from '~constants';
-import { CountActionTypes } from '~context/Count/countActions';
-import { CountState } from '~context/Count/CountProvider';
+import { CountTypes } from '~/constants';
+import type { CountActionTypes } from '~/context/Count/countActions';
+import type { CountState } from '~/context/Count/CountProvider';
 
 export type Dispatch = (action: CountActionTypes) => void;
 

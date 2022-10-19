@@ -6,9 +6,12 @@ interface Props {
 export default function AppContextCompose({ components = [], children }: Props) {
   return (
     <>
-      {components.reduceRight((acc, Component) => {
-        return <Component>{acc}</Component>;
-      }, children)}
+      {components.reduceRight(
+        (acc, Component) => (
+          <Component>{acc}</Component>
+        ),
+        children,
+      )}
     </>
   );
 }

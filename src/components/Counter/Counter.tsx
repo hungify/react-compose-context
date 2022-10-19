@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useCount from '~context/Count';
+import useCount from '~/context/Count';
 import styles from './Counter.module.css';
 
 function Counter() {

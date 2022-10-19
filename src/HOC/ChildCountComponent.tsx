@@ -1,4 +1,4 @@
-import ParentCountComponent from '~HOC/ParentCountComponent';
+import ParentCountComponent from '~/HOC/ParentCountComponent';
 
 interface ChildCountProps {
   count: number;

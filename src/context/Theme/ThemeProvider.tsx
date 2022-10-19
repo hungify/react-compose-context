@@ -1,6 +1,6 @@
 import { createContext } from 'react';
-import { Themes } from '~constants/themes';
-import { useLocalStorage } from '~hooks';
+import { Themes } from '~/constants/themes';
+import { useLocalStorage } from '~/hooks';
 
 export interface ThemeState {
   theme: Themes;

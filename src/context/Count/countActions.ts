@@ -1,4 +1,4 @@
-import { CountTypes } from '~constants';
+import type { CountTypes } from '~/constants';
 
 interface Increase {
   type: `${CountTypes.increase}`;

@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import withRedirectIfBlank, { RedirectIfBlankProps } from '~HOC/components/withRedirectIfBlank';
+import withRedirectIfBlank, {
+  type RedirectIfBlankProps,
+} from '~/HOC/components/withRedirectIfBlank';
 
 function ListNumber({ data }: RedirectIfBlankProps) {
   const navigate = useNavigate();
