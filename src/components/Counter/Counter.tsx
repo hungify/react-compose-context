@@ -6,7 +6,7 @@ function Counter() {
   const [incrementAmount, setIncrementAmount] = useState('2');
 
   const { state, decrease, increase, increaseByAmount, increaseAsync, dispatch } = useCount();
-  const { count } = state;
+  const { count, loading } = state;
 
   return (
     <div>
@@ -36,7 +36,7 @@ function Counter() {
           className={styles.asyncButton}
           onClick={() => dispatch(increaseAsync(Number(incrementAmount) || 0))}
         >
-          Add Async
+          Add Async {loading ? '- Loading...' : ''}
         </button>
       </div>
     </div>

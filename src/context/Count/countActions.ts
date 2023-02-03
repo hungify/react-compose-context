@@ -10,9 +10,29 @@ interface Decrease {
   payload?: number;
 }
 
+interface Pending {
+  type: `${CountTypes.pending}`;
+}
+
+interface Fulfilled {
+  type: `${CountTypes.fulfilled}`;
+  payload?: number;
+}
+
+interface Rejected {
+  type: `${CountTypes.rejected}`;
+  payload?: string;
+}
+
 interface IncreaseAmount {
   type: `${CountTypes.increaseAmount}`;
   payload: number;
 }
 
-export type CountActionTypes = Increase | Decrease | IncreaseAmount;
+export type CountActionTypes =
+  | Increase
+  | Decrease
+  | IncreaseAmount
+  | Pending
+  | Fulfilled
+  | Rejected;

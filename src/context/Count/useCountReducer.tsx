@@ -5,11 +5,32 @@ import type { CountState } from '~/context/Count/CountProvider';
 
 export type Dispatch = (action: CountActionTypes) => void;
 
+type ActionThunk = (dispatch: Dispatch) => void;
+
+const fakeApi = (amount: number): Promise<number> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(amount);
+    }, 2000);
+  });
+};
+
 export function useCountReducer(initialState: CountState) {
   const [state, dispatch] = useReducer((state: CountState, action: CountActionTypes) => {
     const { count } = state;
 
     switch (action.type) {
+      case CountTypes.pending:
+        return {
+          ...state,
+          loading: true,
+        };
+      case CountTypes.fulfilled:
+        return {
+          ...state,
+          count: count + (action?.payload ?? 0),
+          loading: false,
+        };
       case CountTypes.decrease:
         return {
           ...state,
@@ -50,23 +71,21 @@ export function useCountReducer(initialState: CountState) {
   }, []);
 
   const _handleIncrementAsync = useCallback(
-    (amount: number) => (dispatch: Dispatch) => {
+    (amount: number) => async (dispatch: Dispatch) => {
       dispatch({
-        type: CountTypes.decrease,
-        payload: 10,
+        type: CountTypes.pending,
       });
-      setTimeout(() => {
-        dispatch({ type: CountTypes.increaseAmount, payload: amount });
-      }, 2000);
+
+      const value = await fakeApi(amount);
+
       dispatch({
-        type: CountTypes.increaseAmount,
-        payload: 5,
+        type: CountTypes.fulfilled,
+        payload: value,
       });
     },
     [],
   );
 
-  type ActionThunk = (dispatch: Dispatch) => void;
   const _thunkDispatch = useCallback(
     (action: ActionThunk) => (typeof action === 'function' ? action(dispatch) : action),
     [],

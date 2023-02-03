@@ -3,12 +3,14 @@ import { useCountReducer } from '~/context/Count/useCountReducer';
 
 export interface CountState {
   count: number;
+  loading: boolean;
 }
 
 type CountContext = ReturnType<typeof useCountReducer>;
 
 const initialValue: CountState = {
   count: 0,
+  loading: false,
 };
 
 export const CountContext = createContext<CountContext>({
@@ -16,7 +18,7 @@ export const CountContext = createContext<CountContext>({
   increase: () => undefined,
   decrease: () => undefined,
   increaseByAmount: () => undefined,
-  increaseAsync: () => () => undefined,
+  increaseAsync: () => () => Promise.resolve(),
   dispatch: () => undefined,
 });
 CountContext.displayName = 'CountProvider';
