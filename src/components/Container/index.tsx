@@ -1,4 +1,4 @@
-import { useStore } from '~/app';
+import { useStore } from '~/store';
 
 const TextInput = ({ value }: { value: 'first' | 'last' }) => {
   const [fieldValue, setStore] = useStore((store) => store[value]);

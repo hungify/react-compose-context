@@ -20,6 +20,8 @@ export default function Home() {
         <button onClick={() => navigate('list-string')}>Go To List String</button>
         <button onClick={() => navigate('list-number')}>Go To List Number</button>
         <button onClick={() => navigate('store')}>Go To Store</button>
+        <button onClick={() => navigate('form')}>Go To Form</button>
+
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>

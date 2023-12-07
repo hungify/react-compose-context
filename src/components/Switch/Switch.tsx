@@ -1,6 +1,6 @@
 import React from 'react';
-import { useStore } from '~/app';
 import { Themes } from '~/constants';
+import { useStore } from '~/store';
 
 export default function Switch() {
   const [theme, setTheme] = useStore((store) => store.theme);
