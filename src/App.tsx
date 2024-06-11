@@ -9,6 +9,7 @@ import Home from '~/pages/Home';
 import ContentContainer from '~/components/Container';
 import { Form } from './pages/Form';
 import { useStore } from './store';
+import { Video } from './pages/Video';
 
 function App() {
   const [theme] = useStore((store) => store.theme);
@@ -23,6 +24,7 @@ function App() {
         <Route path='list-string' element={<ListString data={['a', 'b']} />} />
         <Route path='list-number' element={<ListNumber data={[1, 2]} />} />
         <Route path='form' element={<Form />} />
+        <Route path='video' element={<Video />} />
         <Route
           path='*'
           element={
